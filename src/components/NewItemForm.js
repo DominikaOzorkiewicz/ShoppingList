@@ -102,6 +102,7 @@ export const NewItemForm = ({ addProductFn }) => {
                         >
                             <MenuItem value='g'>grams</MenuItem>
                             <MenuItem value='kg'>kilograms</MenuItem>
+                            <MenuItem value='l'>liters</MenuItem>
                             <MenuItem value='item(s)'>item(s)</MenuItem>
                         </Select>
                     </FormGroup>
