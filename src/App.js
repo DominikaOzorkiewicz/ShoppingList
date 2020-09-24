@@ -23,6 +23,12 @@ const App = () => {
         setItems(updatedItems);
     }
 
+    // Delete product from shopping list
+    const deleteItem = (id) => {
+        const updatedItem = [...items].filter(item => item.id !== id);
+        setItems(updatedItem);
+    }
+
     // Clear shopping list
     const clearList = () => {
         setItems([]);
@@ -32,7 +38,7 @@ const App = () => {
         <div className="App">
             <Header />
             <NewItemForm addProductFn={addProduct} />
-            <ItemsList items={items} toggleBoughtFn={toggleBought} clearListFn={clearList} />
+            <ItemsList items={items} toggleBoughtFn={toggleBought} clearListFn={clearList} deleteItemFn={deleteItem} />
         </div>
     );
 }
