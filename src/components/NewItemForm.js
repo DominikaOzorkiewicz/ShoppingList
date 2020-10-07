@@ -13,11 +13,12 @@ import {
 import { Alert } from '@material-ui/lab';
 import {makeStyles} from "@material-ui/core/styles";
 import {Product} from "../models/Product";
+import {useInput} from "../hooks/useInput";
 
 export const NewItemForm = ({ addProductFn }) => {
-    const [item, setItem] = useState('');
-    const [quantity, setQuantity] = useState('');
-    const [unit, setUnit] = useState('item(s)');
+    const [item, setItem, itemFormParams] = useInput('');
+    const [quantity, setQuantity, qtyFormParams] = useInput('');
+    const [unit, setUnit, unitFormParams] = useInput('item(s)');
     const [errors, setErrors] = useState([]);
 
     // Form submit event with errors handling
@@ -26,21 +27,22 @@ export const NewItemForm = ({ addProductFn }) => {
         const tmpErrors = [];
         const qty = Number(quantity);
 
-        if(item.trim().length < 3) {
+        if (item.trim().length < 3) {
             tmpErrors.push('Item name must be at least 3 characters long');
         }
-        if(isNaN(qty)) {
+        if (isNaN(qty)) {
             tmpErrors.push('Quantity must be a number');
-        } else if(qty <= 0) {
+        } else if (qty <= 0) {
             tmpErrors.push('Quantity must be a positive number');
         }
         setErrors(tmpErrors);
 
-        if(tmpErrors.length === 0) {
+        if (tmpErrors.length === 0) {
             const newProduct = new Product(item, qty, unit);
             addProductFn(newProduct);
             setItem('');
             setQuantity('');
+            setUnit('item(s)');
         }
     }
 
@@ -66,7 +68,7 @@ export const NewItemForm = ({ addProductFn }) => {
 
     // If there are any errors, Alert will be shown
     let errorsJsx = null;
-    if(errors.length > 0) {
+    if (errors.length > 0) {
         errorsJsx = errors.map((err, index) => <Alert key={index} severity='error'>{err}</Alert>)
     }
 
@@ -79,26 +81,19 @@ export const NewItemForm = ({ addProductFn }) => {
 
                     <FormGroup className={classes.input}>
                         <InputLabel>Item</InputLabel>
-                        <TextField
-                            value={item}
-                            onChange={event => setItem(event.target.value)}
-                        />
+                        <TextField {...itemFormParams} />
                     </FormGroup>
 
                     <FormGroup className={classes.input}>
                         <InputLabel>Quantity</InputLabel>
-                        <TextField
-                            value={quantity}
-                            onChange={event => setQuantity(event.target.value)}
-                        />
+                        <TextField {...qtyFormParams} />
                     </FormGroup>
 
                     <FormGroup className={classes.input}>
                         <InputLabel>Unit</InputLabel>
                         <Select
                             className={classes.unitSelect}
-                            value={unit}
-                            onChange={event => setUnit(event.target.value)}
+                            {...unitFormParams}
                         >
                             <MenuItem value='g'>grams</MenuItem>
                             <MenuItem value='kg'>kilograms</MenuItem>

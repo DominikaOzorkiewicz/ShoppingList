@@ -1,11 +1,12 @@
-import React, {useState} from 'react';
+import React from 'react';
 import './scss/main.scss';
 import {Header} from "./components/Header";
 import {NewItemForm} from "./components/NewItemForm";
 import {ItemsList} from "./components/ItemsList";
+import {useLocalStorage} from "./hooks/useLocalStorage";
 
 const App = () => {
-    const [items, setItems] = useState([]);
+    const [items, setItems] = useLocalStorage('itemsList', []);
 
     // Add new product to items array
     const addProduct = (product) => {
