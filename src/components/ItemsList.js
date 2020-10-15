@@ -2,7 +2,7 @@ import React from 'react';
 import { Container, List, Button } from "@material-ui/core";
 import {Item} from "./Item";
 
-export const ItemsList = ({ items, toggleBoughtFn, clearListFn, deleteItemFn }) => {
+export const ItemsList = ({ items, toggleBoughtFn, clearListFn, deleteItemFn, t }) => {
 
     const handleClearList = () => clearListFn();
 
@@ -15,12 +15,13 @@ export const ItemsList = ({ items, toggleBoughtFn, clearListFn, deleteItemFn }) 
                         item={product}
                         toggleBoughtFn={toggleBoughtFn}
                         deleteItemFn={deleteItemFn}
+                        t={t}
                     />
                 ))}
             </List>
             {items.length > 0 && (
                 <Button variant='contained' color='secondary' onClick={handleClearList}>
-                    Clear
+                    {t("button.clear")}
                 </Button>
             )}
         </Container>

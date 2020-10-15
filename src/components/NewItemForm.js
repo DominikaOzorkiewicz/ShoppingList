@@ -15,7 +15,7 @@ import {makeStyles} from "@material-ui/core/styles";
 import {Product} from "../models/Product";
 import {useInput} from "../hooks/useInput";
 
-export const NewItemForm = ({ addProductFn }) => {
+export const NewItemForm = ({ addProductFn, t }) => {
     const [item, setItem, itemFormParams] = useInput('');
     const [quantity, setQuantity, qtyFormParams] = useInput('');
     const [unit, setUnit, unitFormParams] = useInput('item(s)');
@@ -28,12 +28,12 @@ export const NewItemForm = ({ addProductFn }) => {
         const qty = Number(quantity);
 
         if (item.trim().length < 3) {
-            tmpErrors.push('Item name must be at least 3 characters long');
+            tmpErrors.push(t("error.type1"));
         }
         if (isNaN(qty)) {
-            tmpErrors.push('Quantity must be a number');
+            tmpErrors.push(t("error.type2"));
         } else if (qty <= 0) {
-            tmpErrors.push('Quantity must be a positive number');
+            tmpErrors.push(t("error.type3"));
         }
         setErrors(tmpErrors);
 
@@ -42,7 +42,7 @@ export const NewItemForm = ({ addProductFn }) => {
             addProductFn(newProduct);
             setItem('');
             setQuantity('');
-            setUnit('item(s)');
+            setUnit(t("label.unitType.items"));
         }
     }
 
@@ -80,30 +80,44 @@ export const NewItemForm = ({ addProductFn }) => {
                 <form className={classes.form} onSubmit={handleSubmit}>
 
                     <FormGroup className={classes.input}>
-                        <InputLabel>Item</InputLabel>
+                        <InputLabel>
+                            {t("label.item")}
+                        </InputLabel>
                         <TextField {...itemFormParams} />
                     </FormGroup>
 
                     <FormGroup className={classes.input}>
-                        <InputLabel>Quantity</InputLabel>
+                        <InputLabel>
+                            {t("label.quantity")}
+                        </InputLabel>
                         <TextField {...qtyFormParams} />
                     </FormGroup>
 
                     <FormGroup className={classes.input}>
-                        <InputLabel>Unit</InputLabel>
+                        <InputLabel>
+                            {t("label.unit")}
+                        </InputLabel>
                         <Select
                             className={classes.unitSelect}
                             {...unitFormParams}
                         >
-                            <MenuItem value='g'>grams</MenuItem>
-                            <MenuItem value='kg'>kilograms</MenuItem>
-                            <MenuItem value='l'>liters</MenuItem>
-                            <MenuItem value='item(s)'>item(s)</MenuItem>
+                            <MenuItem value='g'>
+                                {t("label.unitType.grams")}
+                            </MenuItem>
+                            <MenuItem value='kg'>
+                                {t("label.unitType.kilograms")}
+                            </MenuItem>
+                            <MenuItem value='l'>
+                                {t("label.unitType.liters")}
+                            </MenuItem>
+                            <MenuItem value={t("label.unitType.items")}>
+                                {t("label.unitType.items")}
+                            </MenuItem>
                         </Select>
                     </FormGroup>
 
                     <Button type='submit' variant='contained' color='primary'>
-                        Add
+                        {t("button.add")}
                     </Button>
 
                 </form>
