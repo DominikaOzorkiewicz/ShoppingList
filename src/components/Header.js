@@ -12,19 +12,13 @@ export const Header = ({ changeLanguage, t }) => {
                 height: '25px',
                 marginRight: '10px'
             },
-            languageButtons: {
-                border: '1px solid #bdbdbd',
-            },
-            languageButton: {
-                fontSize: '0.55rem',
-            },
     }));
     const classes = styles();
 
     return (
         <AppBar position='static'>
             <Toolbar>
-                <Container maxWidth='md' >
+                <Container maxWidth='md'>
                     <Typography variant='h6'>
                         <img
                             className={classes.logo}
@@ -33,27 +27,27 @@ export const Header = ({ changeLanguage, t }) => {
                         />
                         {t("title")}
                     </Typography>
-
                 </Container>
                 <ButtonGroup
-                    className={classes.languageButtons}
                     size='small'
                     color='primary'
                     variant="contained"
                     orientation='horizontal'
                     disableElevation
                 >
-                    <Button
-                        className={classes.languageButton}
-                        onClick={() => changeLanguage('en')}
-                    >
-                        English
+                    <Button onClick={() => changeLanguage('en')}>
+                        <img
+                            src={"assets/en.png"}
+                            title='English'
+                            alt='UK Flag'
+                        />
                     </Button>
-                    <Button
-                        className={classes.languageButton}
-                        onClick={() => changeLanguage('pl')}
-                    >
-                        Polski
+                    <Button onClick={() => changeLanguage('pl')}>
+                        <img
+                            src={"assets/pl.png"}
+                            title='Polski'
+                            alt='Polish Flag'
+                        />
                     </Button>
                 </ButtonGroup>
             </Toolbar>
