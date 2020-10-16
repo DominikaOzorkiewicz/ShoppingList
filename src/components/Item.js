@@ -2,7 +2,7 @@ import React from 'react';
 import { ListItem, ListItemIcon, Checkbox, ListItemText, IconButton } from "@material-ui/core";
 import DeleteIcon from '@material-ui/icons/Delete';
 
-export const Item = ({ item, toggleBoughtFn, deleteItemFn }) => {
+export const Item = ({ item, toggleBoughtFn, deleteItemFn, t }) => {
 
     const handleBought = () => {
         if(typeof toggleBoughtFn === 'function') {
@@ -32,7 +32,7 @@ export const Item = ({ item, toggleBoughtFn, deleteItemFn }) => {
                 {item.name} - {item.quantity} {item.unit}
             </ListItemText>
 
-            <IconButton aria-label="delete" onClick={handleDeleteItem}>
+            <IconButton aria-label="delete" title={t("button.delete")} onClick={handleDeleteItem} >
                 <DeleteIcon fontSize="small" />
             </IconButton>
 

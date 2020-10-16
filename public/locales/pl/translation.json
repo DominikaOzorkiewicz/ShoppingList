@@ -1,0 +1,24 @@
+{
+  "title": "Lista Zakupów",
+  "label": {
+    "item": "Produkt",
+    "quantity": "Ilość",
+    "unit": "Jednostka",
+    "unitType" : {
+      "grams": "gramy",
+      "kilograms": "kilogramy",
+      "liters": "litry",
+      "items": "szt"
+    }
+  },
+  "button": {
+    "add": "Dodaj",
+    "delete": "Usuń",
+    "clear": "Wyczyść"
+  },
+  "error": {
+    "type1": "Nazwa produktu musi zawierać co najmniej 3 litery",
+    "type2": "Ilość musi być liczbą",
+    "type3": "Ilość musi być liczbą dodatnią"
+  }
+}

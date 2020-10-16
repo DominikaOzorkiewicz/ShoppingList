@@ -4,9 +4,15 @@ import {Header} from "./components/Header";
 import {NewItemForm} from "./components/NewItemForm";
 import {ItemsList} from "./components/ItemsList";
 import {useLocalStorage} from "./hooks/useLocalStorage";
+import {useTranslation} from "react-i18next";
 
 const App = () => {
     const [items, setItems] = useLocalStorage('itemsList', []);
+    // Function to translate content (t), instance to change the language (i18n)
+    const [t, i18n] = useTranslation();
+    const changeLanguage = (language) => {
+        i18n.changeLanguage(language);
+    }
 
     // Add new product to items array
     const addProduct = (product) => {
@@ -37,9 +43,9 @@ const App = () => {
 
     return (
         <div className="App">
-            <Header />
-            <NewItemForm addProductFn={addProduct} />
-            <ItemsList items={items} toggleBoughtFn={toggleBought} clearListFn={clearList} deleteItemFn={deleteItem} />
+            <Header changeLanguage={changeLanguage} t={t} />
+            <NewItemForm addProductFn={addProduct} t={t} />
+            <ItemsList items={items} toggleBoughtFn={toggleBought} clearListFn={clearList} deleteItemFn={deleteItem} t={t} />
         </div>
     );
 }

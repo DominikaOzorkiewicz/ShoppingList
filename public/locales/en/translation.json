@@ -1,0 +1,24 @@
+{
+  "title": "Shopping List",
+  "label": {
+    "item": "Item",
+    "quantity": "Quantity",
+    "unit": "Unit",
+    "unitType" : {
+      "grams": "grams",
+      "kilograms": "kilograms",
+      "liters": "liters",
+      "items": "item(s)"
+    }
+  },
+  "button": {
+    "add": "Add",
+    "delete": "Delete",
+    "clear": "Clear"
+  },
+  "error": {
+    "type1": "Item name must be at least 3 characters long",
+    "type2": "Quantity must be a number",
+    "type3": "Quantity must be a positive number"
+  }
+}
