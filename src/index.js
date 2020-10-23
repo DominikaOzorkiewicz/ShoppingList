@@ -7,11 +7,9 @@ import './i18n';
 import CircularProgress from "@material-ui/core/CircularProgress";
 
 ReactDOM.render(
-  <React.StrictMode>
       <Suspense fallback={<CircularProgress />}>
           <App />
-      </Suspense>
-  </React.StrictMode>,
+      </Suspense>,
   document.getElementById('root')
 );
 
