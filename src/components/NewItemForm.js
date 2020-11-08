@@ -1,14 +1,12 @@
 import React, {useState} from 'react';
 import {
     Paper,
-    Container,
     FormGroup,
     InputLabel,
     TextField,
     Select,
     MenuItem,
     Button,
-    createStyles
 } from "@material-ui/core";
 import { Alert } from '@material-ui/lab';
 import {makeStyles} from "@material-ui/core/styles";
@@ -47,24 +45,29 @@ export const NewItemForm = ({ addProductFn, t }) => {
     }
 
     // Custom styles
-    const styles = makeStyles(() =>
-        createStyles({
-            form: {
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                flexWrap: 'wrap',
-                padding: '10px'
-            },
-            input: {
-                margin: '10px 20px',
-            },
-            unitSelect: {
-                minWidth: '100px'
-            }
-        })
-    );
-    const classes = styles();
+    const useStyles = makeStyles((theme) => ({
+        toolbar: {
+            // Necessary for content to be below app bar
+            ...theme.mixins.toolbar,
+        },
+        content: {
+            flexGrow: 1,
+        },
+        form: {
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            flexWrap: 'wrap',
+            padding: '10px'
+        },
+        input: {
+            margin: '10px 20px',
+        },
+        unitSelect: {
+            minWidth: '100px'
+        },
+    }));
+    const classes = useStyles();
 
     // If there are any errors, Alert will be shown
     let errorsJsx = null;
@@ -74,8 +77,9 @@ export const NewItemForm = ({ addProductFn, t }) => {
 
 
     return (
-        <Paper square elevation={3}>
-            <Container maxWidth='md'>
+        <>
+            <div className={classes.toolbar} />
+            <Paper square elevation={3} className={classes.content} >
                 {errorsJsx}
                 <form className={classes.form} onSubmit={handleSubmit}>
 
@@ -121,7 +125,7 @@ export const NewItemForm = ({ addProductFn, t }) => {
                     </Button>
 
                 </form>
-            </Container>
-        </Paper>
+            </Paper>
+        </>
     );
 }

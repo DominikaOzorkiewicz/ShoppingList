@@ -1,10 +1,11 @@
 import React from 'react';
 import './scss/main.scss';
 import {Header} from "./components/Header";
-import {NewItemForm} from "./components/NewItemForm";
-import {ItemsList} from "./components/ItemsList";
 import {useLocalStorage} from "./hooks/useLocalStorage";
 import {useTranslation} from "react-i18next";
+import {BottomNav} from "./components/BottomNav";
+import {SideNav} from "./components/SideNav";
+import {Main} from "./components/Main";
 
 const App = () => {
     const [items, setItems] = useLocalStorage('itemsList', []);
@@ -42,10 +43,18 @@ const App = () => {
     }
 
     return (
-        <div className="App">
+        <div className="App" style={{display: 'flex'}}>
             <Header changeLanguage={changeLanguage} t={t} />
-            <NewItemForm addProductFn={addProduct} t={t} />
-            <ItemsList items={items} toggleBoughtFn={toggleBought} clearListFn={clearList} deleteItemFn={deleteItem} t={t} />
+            <SideNav />
+            <Main
+                items={items}
+                toggleBoughtFn={toggleBought}
+                clearListFn={clearList}
+                deleteItemFn={deleteItem}
+                t={t}
+                addProductFn={addProduct}
+            />
+            <BottomNav />
         </div>
     );
 }

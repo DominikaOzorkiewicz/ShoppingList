@@ -7,7 +7,7 @@ export const ItemsList = ({ items, toggleBoughtFn, clearListFn, deleteItemFn, t 
     const handleClearList = () => clearListFn();
 
     return (
-        <Container maxWidth='md'>
+        <Container fixed maxWidth='md'>
             <List>
                 {items.map((product) => (
                     <Item

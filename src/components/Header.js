@@ -1,22 +1,24 @@
 import React from "react";
-import {createStyles, makeStyles} from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import { AppBar, Toolbar, Typography, Container, ButtonGroup, Button } from "@material-ui/core";
 import logo from '../logo.svg';
 
 export const Header = ({ changeLanguage, t }) => {
 
-    const styles = makeStyles(() =>
-        createStyles({
-            logo: {
-                width: '25px',
-                height: '25px',
-                marginRight: '10px'
-            },
+    const useStyles = makeStyles((theme) => ({
+        appBar: {
+            zIndex: theme.zIndex.drawer +1,
+        },
+        logo: {
+            width: '25px',
+            height: '25px',
+            marginRight: '10px'
+        },
     }));
-    const classes = styles();
+    const classes = useStyles();
 
     return (
-        <AppBar position='static'>
+        <AppBar position='fixed' className={classes.appBar}>
             <Toolbar>
                 <Container maxWidth='md'>
                     <Typography variant='h6'>
