@@ -22,7 +22,7 @@
 * [Create React App](https://github.com/facebook/create-react-app)
 * [Material-UI](https://material-ui.com/)
 * [Sass](https://sass-lang.com/)
-* [i18next](https://www.i18next.com/r) - for translations (EN, PL)
+* [i18next](https://www.i18next.com) - for translations (EN, PL)
 
 ## Live Demo
 
